@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinearAlgebraLibrary.Interface", "LinearAlgebraLibrary.Interface\LinearAlgebraLibrary.Interface.csproj", "{78E154BD-29E2-4FDD-A2D1-29AAB96E8222}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinearAlgebraLibrary.Solution", "LinearAlgebraLibrary.Solution\LinearAlgebraLibrary.Solution.csproj", "{13CFF9DD-BE72-43B5-8567-3242CA0D8FC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinearAlgebraLibrary.Test", "LinearAlgebraLibrary.Test\LinearAlgebraLibrary.Test.csproj", "{2B22F9AC-BBFE-4EB7-B97C-C8A8B99977DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinearAlgebraLibrary.Exercise", "LinearAlgebraLibrary.Exercise\LinearAlgebraLibrary.Exercise.csproj", "{F4439922-6C9A-46FB-989E-063828149363}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{78E154BD-29E2-4FDD-A2D1-29AAB96E8222}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78E154BD-29E2-4FDD-A2D1-29AAB96E8222}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78E154BD-29E2-4FDD-A2D1-29AAB96E8222}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78E154BD-29E2-4FDD-A2D1-29AAB96E8222}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13CFF9DD-BE72-43B5-8567-3242CA0D8FC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13CFF9DD-BE72-43B5-8567-3242CA0D8FC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13CFF9DD-BE72-43B5-8567-3242CA0D8FC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13CFF9DD-BE72-43B5-8567-3242CA0D8FC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B22F9AC-BBFE-4EB7-B97C-C8A8B99977DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B22F9AC-BBFE-4EB7-B97C-C8A8B99977DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B22F9AC-BBFE-4EB7-B97C-C8A8B99977DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B22F9AC-BBFE-4EB7-B97C-C8A8B99977DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4439922-6C9A-46FB-989E-063828149363}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4439922-6C9A-46FB-989E-063828149363}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4439922-6C9A-46FB-989E-063828149363}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4439922-6C9A-46FB-989E-063828149363}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D099EBAC-7A81-41DF-A592-C25C9DC6BAAE}
+	EndGlobalSection
+EndGlobal
