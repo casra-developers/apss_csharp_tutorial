@@ -77,7 +77,7 @@ namespace LinearAlgebraLibrary.Solution
         /// <returns>Returns true if successful</returns>
         public bool TryGetVector3(out IVector3? vector3)
         {
-            if (Dimensions != 2)
+            if (Dimensions != 3)
             {
                 vector3 = null;
                 return false;
