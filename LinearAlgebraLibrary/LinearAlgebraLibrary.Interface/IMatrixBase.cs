@@ -63,12 +63,46 @@ namespace LinearAlgebraLibrary.Interface
         TMatrix Subtract(TMatrix otherMatrix);
 
         /// <summary>
+        /// Multiplies scalar to matrix
+        /// </summary>
+        /// <param name="scalar">scalar to multiply matrix with</param>
+        /// <returns></returns>
+        TMatrix Multiply(double scalar);
+
+        /// <summary>
         /// Multiplies two matrices and returns resulting matrix
         /// </summary>
         /// <param name="otherMatrix">matrix to multiply</param>
         /// <returns></returns>
         /// <exception cref="ArgumentException">Throws exception if the matrix dimensions do not match</exception>
         TMatrix Multiply(TMatrix otherMatrix);
+
+        /// <summary>
+        /// Extract sub-matrix
+        /// </summary>
+        /// <param name="rowIndex">Start row index</param>
+        /// <param name="rowCount">Row count of sub-matrix</param>
+        /// <param name="colIndex">Start column index</param>
+        /// <param name="colCount">Column count of sub-matrix</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException">Throws exception if sub-matrix parameters are out of range.</exception>
+        TMatrix SubMatrix(int rowIndex, int rowCount, int colIndex, int colCount);
+
+        /// <summary>
+        /// Stack two matrices horizontally
+        /// </summary>
+        /// <param name="otherMatrix">second matrix</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException">Throws exception if the rows of the matrices do not match</exception>
+        TMatrix HStack(TMatrix otherMatrix);
+
+        /// <summary>
+        /// Stack two matrices vertically
+        /// </summary>
+        /// <param name="otherMatrix">second matrix</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException">Throws exception if the columns of the matrices do not match</exception>
+        TMatrix VStack(TMatrix otherMatrix);
 
         /// <summary>
         /// Multiplies matrix with vector

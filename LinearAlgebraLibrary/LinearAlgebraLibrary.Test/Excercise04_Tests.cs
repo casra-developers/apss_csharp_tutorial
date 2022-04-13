@@ -7,7 +7,50 @@ namespace LinearAlgebraLibrary.Test
     public class Excercise04_Tests
     {
         [Test]
-        public void Ex04_Task01_Dimensions()
+        public void Ex04_Task01_Constructors()
+        {
+            // create test vector
+            LinearAlgebraFactory.MakeVector(2.5, 3.2, 5.1);
+            LinearAlgebraFactory.MakeVector(2.1, 1.3);
+            LinearAlgebraFactory.MakeVector(2.1, 1.3, 0.1, 4.8);
+            LinearAlgebraFactory.MakeVector(10);
+        }
+
+        [Test]
+        public void Ex04_Task01_ConstructorsWithInvalidArgs()
+        {
+            // test edge-case
+            Assert.Throws<ArgumentOutOfRangeException>(() => LinearAlgebraFactory.MakeVector(-5));
+        }
+
+        [Test]
+        public void Ex04_Task02_ComponentAccess()
+        {
+            var vector = LinearAlgebraFactory.MakeVector(2.5, 3.2, 5.1);
+            Assert.AreEqual(2.5, vector[0], double.Epsilon);
+            Assert.AreEqual(3.2, vector[1], double.Epsilon);
+            Assert.AreEqual(5.1, vector[2], double.Epsilon);
+
+            vector = LinearAlgebraFactory.MakeVector(2.1, 1.3);
+            Assert.AreEqual(2.1, vector[0], double.Epsilon);
+            Assert.AreEqual(1.3, vector[1], double.Epsilon);
+
+            vector = LinearAlgebraFactory.MakeVector(2.1, 1.3, 0.1, 4.8);
+            Assert.AreEqual(2.1, vector[0], double.Epsilon);
+            Assert.AreEqual(1.3, vector[1], double.Epsilon);
+            Assert.AreEqual(0.1, vector[2], double.Epsilon);
+            Assert.AreEqual(4.8, vector[3], double.Epsilon);
+
+            vector = LinearAlgebraFactory.MakeVector(5);
+            Assert.AreEqual(0, vector[0], double.Epsilon);
+            Assert.AreEqual(0, vector[1], double.Epsilon);
+            Assert.AreEqual(0, vector[2], double.Epsilon);
+            Assert.AreEqual(0, vector[3], double.Epsilon);
+            Assert.AreEqual(0, vector[4], double.Epsilon);
+        }
+
+        [Test]
+        public void Ex04_Task03_Dimensions()
         {
             // create test vector
             var vector = LinearAlgebraFactory.MakeVector(1, 2, 3, 5);
@@ -32,10 +75,16 @@ namespace LinearAlgebraLibrary.Test
 
             // check if vector has proper dimensionality
             Assert.AreEqual(1, vector.Dimensions);
+
+            // create test vector
+            vector = LinearAlgebraFactory.MakeVector(100);
+
+            // check if vector has proper dimensionality
+            Assert.AreEqual(100, vector.Dimensions);
         }
 
         [Test]
-        public void Ex04_Task02_L2Norm()
+        public void Ex04_Task04_L2Norm()
         {
             // check if vector has proper length
             Assert.AreEqual(Math.Sqrt(50), LinearAlgebraFactory.MakeVector(4, 3, 5).Length, double.Epsilon);
@@ -48,7 +97,7 @@ namespace LinearAlgebraLibrary.Test
         }
 
         [Test]
-        public void Ex04_Task03_Adding()
+        public void Ex04_Task05_Adding()
         {
             // create test vectors
             var a = LinearAlgebraFactory.MakeVector(1.2, 2, 4);
@@ -69,10 +118,15 @@ namespace LinearAlgebraLibrary.Test
 
             // check if sum is correct
             AssertionTools.AssertVector(a.Add(b), 7.2, 2.7, 1, 11, 20);
+
+            // test if instances are handled correctly
+            var c = a.Add(b);
+            AssertionTools.AssertDistinctInstances(a, c);
+            AssertionTools.AssertDistinctInstances(b, c);
         }
 
         [Test]
-        public void Ex04_Task03_Adding_NonMatchingDimensions()
+        public void Ex04_Task05_Adding_NonMatchingDimensions()
         {
             // test edge cases
             var a = LinearAlgebraFactory.MakeVector(1.2, 2, 4);
@@ -82,7 +136,7 @@ namespace LinearAlgebraLibrary.Test
         }
 
         [Test]
-        public void Ex04_Task04_Subtracting()
+        public void Ex04_Task06_Subtracting()
         {
             // create test vectors
             var a = LinearAlgebraFactory.MakeVector(2, 6, 3);
@@ -100,10 +154,15 @@ namespace LinearAlgebraLibrary.Test
 
             // check if sum is correct
             AssertionTools.AssertVector(a.Subtract(b), -4.8, 1.3, 7, -1, 0);
+
+            // test if instances are handled correctly
+            var c = a.Subtract(b);
+            AssertionTools.AssertDistinctInstances(a, c);
+            AssertionTools.AssertDistinctInstances(b, c);
         }
 
         [Test]
-        public void Ex04_Task04_Subtracting_NonMatchingDimensions()
+        public void Ex04_Task06_Subtracting_NonMatchingDimensions()
         {
             // test edge cases
             var a = LinearAlgebraFactory.MakeVector(1.2, 2, 4);
@@ -113,7 +172,7 @@ namespace LinearAlgebraLibrary.Test
         }
 
         [Test]
-        public void Ex04_Task05_ScalarMultiplication()
+        public void Ex04_Task07_ScalarMultiplication()
         {
             // create test data
             var vector = LinearAlgebraFactory.MakeVector(2, 6, -3);
@@ -130,10 +189,14 @@ namespace LinearAlgebraLibrary.Test
 
             vector = LinearAlgebraFactory.MakeVector(2, 6, -3, 7, 2, 1);
             AssertionTools.AssertVector(vector.Multiply(2), 4, 12, -6, 14, 4, 2);
+
+            // test if instances are handled correctly
+            var b = vector.Multiply(scalar);
+            AssertionTools.AssertDistinctInstances(vector, b);
         }
 
         [Test]
-        public void Ex04_Task06_DotProduct()
+        public void Ex04_Task08_DotProduct()
         {
             // create test vectors
             var a = LinearAlgebraFactory.MakeVector(2, 0, 1);
@@ -154,7 +217,7 @@ namespace LinearAlgebraLibrary.Test
         }
 
         [Test]
-        public void Ex04_Task06_DotProduct_NonMatchingDimensions()
+        public void Ex04_Task08_DotProduct_NonMatchingDimensions()
         {
             // test edge cases
             var a = LinearAlgebraFactory.MakeVector(1.2, 2, 4);
@@ -164,7 +227,7 @@ namespace LinearAlgebraLibrary.Test
         }
 
         [Test]
-        public void Ex04_Task07_AddingOperator()
+        public void Ex04_Task09_AddingOperator()
         {
             // create test vectors
             var a = new Vector(1.2, 2, 4);
@@ -179,10 +242,15 @@ namespace LinearAlgebraLibrary.Test
 
             // check if sum is correct
             AssertionTools.AssertVector(a + b, 4.8, 1.3, -1);
+
+            // test if instances are handled correctly
+            var c = a + b;
+            AssertionTools.AssertDistinctInstances(a, c);
+            AssertionTools.AssertDistinctInstances(b, c);
         }
 
         [Test]
-        public void Ex04_Task08_SubtractingOperator()
+        public void Ex04_Task10_SubtractingOperator()
         {
             // create test vectors
             var a = new Vector(2, 6, 3);
@@ -190,10 +258,15 @@ namespace LinearAlgebraLibrary.Test
 
             // check if result is correct
             AssertionTools.AssertVector(a - b, -4, 8.5, 0);
+
+            // test if instances are handled correctly
+            var c = a - b;
+            AssertionTools.AssertDistinctInstances(a, c);
+            AssertionTools.AssertDistinctInstances(b, c);
         }
 
         [Test]
-        public void Ex04_Task09_ScalarMultiplicationOperator()
+        public void Ex04_Task11_ScalarMultiplicationOperator()
         {
             // create test data
             var vector = new Vector(2, 6, -3);
@@ -204,7 +277,7 @@ namespace LinearAlgebraLibrary.Test
         }
 
         [Test]
-        public void Ex04_Task10_TryGetVector23()
+        public void Ex04_Task12_TryGetVector23()
         {
             var vector2 = LinearAlgebraFactory.MakeVector(4, 2);
             var vector3 = LinearAlgebraFactory.MakeVector(5, 1, 6);
@@ -227,7 +300,7 @@ namespace LinearAlgebraLibrary.Test
         }
 
         [Test]
-        public void Ex04_Task11_FromVector23()
+        public void Ex04_Task13_FromVector23()
         {
             var vector2 = LinearAlgebraFactory.MakeVector2(4, 2);
             var vector3 = LinearAlgebraFactory.MakeVector3(5, 1, 6);
@@ -237,7 +310,7 @@ namespace LinearAlgebraLibrary.Test
         }
 
         [Test]
-        public void Ex04_Task12_OperatorOverloads_3d()
+        public void Ex04_Task14_OperatorOverloads_3d()
         {
             // ADD
             // create test vectors
@@ -266,7 +339,7 @@ namespace LinearAlgebraLibrary.Test
 
 
         [Test]
-        public void Ex04_Task12_OperatorOverloads_2d()
+        public void Ex04_Task14_OperatorOverloads_2d()
         {
             // ADD
             // create test vectors

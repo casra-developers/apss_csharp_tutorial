@@ -68,6 +68,17 @@ namespace LinearAlgebraLibrary.Test
         }
 
         [Test]
+        public void Ex02_Task03_Adding_InstanceCheck()
+        {
+            // create test vectors
+            var a = LinearAlgebraFactory.MakeVector2(1.2, 2);
+            var b = LinearAlgebraFactory.MakeVector2(6, 0.7);
+            var c = a.Add(b);
+            AssertionTools.AssertDistinctInstances(a, c);
+            AssertionTools.AssertDistinctInstances(b, c);
+        }
+
+        [Test]
         public void Ex02_Task04_Subtracting()
         {
             // create test vectors
@@ -79,6 +90,17 @@ namespace LinearAlgebraLibrary.Test
 
             // check if result is correct
             AssertionTools.AssertVector(-6, 2.5, a.Subtract(b).Subtract(a));
+        }
+
+        [Test]
+        public void Ex02_Task04_Subtracting_InstanceCheck()
+        {
+            // create test vectors
+            var a = LinearAlgebraFactory.MakeVector2(1.2, 2);
+            var b = LinearAlgebraFactory.MakeVector2(6, 0.7);
+            var c = a.Subtract(b);
+            AssertionTools.AssertDistinctInstances(a, c);
+            AssertionTools.AssertDistinctInstances(b, c);
         }
 
         [Test]
@@ -96,6 +118,15 @@ namespace LinearAlgebraLibrary.Test
 
             // check if result is correct
             AssertionTools.AssertVector(-5, -15, vector.Multiply(scalar).Multiply(scalar).Multiply(-10));
+        }
+
+        [Test]
+        public void Ex02_Task05_ScalarMultiplication_InstanceCheck()
+        {
+            // create test vectors
+            var a = LinearAlgebraFactory.MakeVector2(1.2, 2);
+            var c = a.Multiply(3);
+            AssertionTools.AssertDistinctInstances(a, c);
         }
 
         [Test]
@@ -146,6 +177,10 @@ namespace LinearAlgebraLibrary.Test
 
             // check if sum is correct
             AssertionTools.AssertVector(4.8, 1.3, a + b);
+
+            var c = a + b;
+            AssertionTools.AssertDistinctInstances(a, c);
+            AssertionTools.AssertDistinctInstances(b, c);
         }
 
         [Test]
@@ -157,6 +192,10 @@ namespace LinearAlgebraLibrary.Test
 
             // check if result is correct
             AssertionTools.AssertVector(-4, 8.5, a - b);
+
+            var c = a - b;
+            AssertionTools.AssertDistinctInstances(a, c);
+            AssertionTools.AssertDistinctInstances(b, c);
         }
 
         [Test]
@@ -168,6 +207,9 @@ namespace LinearAlgebraLibrary.Test
 
             // check if result is correct
             AssertionTools.AssertVector(1, 3, vector * scalar);
+
+            var b = vector * 5.1;
+            AssertionTools.AssertDistinctInstances(vector, b);
         }
     }
 }

@@ -60,7 +60,7 @@ public IVector3 Add(IVector3 otherVector)
 ```
 
 ## Task 4: Vector subtraction
-Vector addtion works by subtracting all components seperately and using the summed components for the resulting vector.<br>
+Vector subtraction works by subtracting all components seperately and using the summed components for the resulting vector.<br>
 <b>TODO:</b> Add your implementation:
 ```Csharp
 /// <summary>

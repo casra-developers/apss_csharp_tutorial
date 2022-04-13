@@ -95,7 +95,7 @@ namespace LinearAlgebraLibrary.Solution
                             {
                                 var subMatrix1 = SubMatrix(1, Rows - 1, 0, j);
                                 var subMatrix2 = SubMatrix(1, Rows - 1, j + 1, Cols - j - 1);
-                                subMatrix = HStack(subMatrix1, subMatrix2);
+                                subMatrix = subMatrix1.HStack(subMatrix2);
                             }
 
                             determinant += (j % 2 == 0 ? 1 : -1) * this[0, j] * subMatrix.Determinant;
@@ -111,8 +111,13 @@ namespace LinearAlgebraLibrary.Solution
         /// </summary>
         /// <param name="rows">row count</param>
         /// <param name="cols">column count</param>
+        /// <exception cref="ArgumentOutOfRangeException">Throws exception if invalid dimensions are given</exception>
         public Matrix(int rows, int cols)
         {
+            if (rows < 1 || cols < 1)
+            {
+                throw new ArgumentOutOfRangeException($"The matrix must have at least one row and one column. Given {rows}, {cols}");
+            }
             _storage = new double[rows, cols];
         }
 
@@ -130,8 +135,14 @@ namespace LinearAlgebraLibrary.Solution
         /// </summary>
         /// <param name="dimension">Length of matrix diagonal</param>
         /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException">Throws exception if invalid dimension is given</exception>
         public static Matrix CreateIdentityMatrix(int dimension)
         {
+            if (dimension < 1)
+            {
+                throw new ArgumentOutOfRangeException($"Dimension has to be at least one. Given {dimension}");
+            }
+
             var source = new double[dimension, dimension];
             for (var i = 0; i < dimension; ++i)
             {
@@ -144,28 +155,27 @@ namespace LinearAlgebraLibrary.Solution
         /// <summary>
         /// Stack two matrices horizontally
         /// </summary>
-        /// <param name="a">first matrix</param>
-        /// <param name="b">second matrix</param>
+        /// <param name="otherMatrix">second matrix</param>
         /// <returns></returns>
         /// <exception cref="ArgumentException">Throws exception if the rows of the matrices do not match</exception>
-        public static IMatrix HStack(IMatrix a, IMatrix b)
+        public IMatrix HStack(IMatrix otherMatrix)
         {
-            if (a.Rows != b.Rows)
+            if (Rows != otherMatrix.Rows)
             {
-                throw new ArgumentException($"The matrices have to have the same amount of rows: {a.Rows}, {b.Rows}");
+                throw new ArgumentException($"The matrices have to have the same amount of rows: {Rows}, {otherMatrix.Rows}");
             }
 
-            var source = new double[a.Rows, a.Cols + b.Cols];
-            for (var i = 0; i < a.Rows; ++i)
+            var source = new double[Rows, Cols + otherMatrix.Cols];
+            for (var i = 0; i < Rows; ++i)
             {
-                for (var j = 0; j < a.Cols; ++j)
+                for (var j = 0; j < Cols; ++j)
                 {
-                    source[i, j] = a[i, j];
+                    source[i, j] = this[i, j];
                 }
 
-                for (var j = 0; j < b.Cols; ++j)
+                for (var j = 0; j < otherMatrix.Cols; ++j)
                 {
-                    source[i, j + a.Cols] = b[i, j];
+                    source[i, j + Cols] = otherMatrix[i, j];
                 }
             }
 
@@ -175,28 +185,27 @@ namespace LinearAlgebraLibrary.Solution
         /// <summary>
         /// Stack two matrices vertically
         /// </summary>
-        /// <param name="a">first matrix</param>
-        /// <param name="b">second matrix</param>
+        /// <param name="otherMatrix">second matrix</param>
         /// <returns></returns>
         /// <exception cref="ArgumentException">Throws exception if the columns of the matrices do not match</exception>
-        public static IMatrix VStack(IMatrix a, IMatrix b)
+        public IMatrix VStack(IMatrix otherMatrix)
         {
-            if (a.Cols != b.Cols)
+            if (Cols != otherMatrix.Cols)
             {
-                throw new ArgumentException($"The matrices have to have the same amount of columns: {a.Cols}, {b.Cols}");
+                throw new ArgumentException($"The matrices have to have the same amount of columns: {Cols}, {otherMatrix.Cols}");
             }
 
-            var source = new double[a.Rows + a.Rows, a.Cols];
-            for (var j = 0; j < a.Cols; ++j)
+            var source = new double[Rows + otherMatrix.Rows, Cols];
+            for (var j = 0; j < Cols; ++j)
             {
-                for (var i = 0; i < a.Rows; ++i)
+                for (var i = 0; i < Rows; ++i)
                 {
-                    source[i, j] = a[i, j];
+                    source[i, j] = this[i, j];
                 }
 
-                for (var i = 0; i < a.Rows; ++i)
+                for (var i = 0; i < otherMatrix.Rows; ++i)
                 {
-                    source[i+a.Rows, j] = b[i, j];
+                    source[i+Rows, j] = otherMatrix[i, j];
                 }
             }
 
@@ -254,6 +263,25 @@ namespace LinearAlgebraLibrary.Solution
         }
 
         /// <summary>
+        /// Multiplies scalar to matrix
+        /// </summary>
+        /// <param name="scalar">scalar to multiply matrix with</param>
+        /// <returns></returns>
+        public IMatrix Multiply(double scalar)
+        {
+            var resultSource = new double[Rows, Cols];
+            for (var i = 0; i < Rows; ++i)
+            {
+                for (var j = 0; j < Cols; ++j)
+                {
+                    resultSource[i, j] = scalar * this[i, j];
+                }
+            }
+
+            return new Matrix(resultSource);
+        }
+
+        /// <summary>
         /// Multiplies two matrices and returns resulting matrix
         /// </summary>
         /// <param name="otherMatrix">matrix to multiply</param>
@@ -261,7 +289,7 @@ namespace LinearAlgebraLibrary.Solution
         /// <exception cref="ArgumentException">Throws exception if the matrix dimensions do not match</exception>
         public IMatrix Multiply(IMatrix otherMatrix)
         {
-            if (otherMatrix.Rows != Cols || otherMatrix.Cols != Rows)
+            if (otherMatrix.Rows != Cols)
             {
                 throw new ArgumentException($"The matrices cannot be multiplied, wrong dimensionality: [{Rows}, {Cols}], [{otherMatrix.Rows}, {otherMatrix.Cols}]");
             }
@@ -334,7 +362,7 @@ namespace LinearAlgebraLibrary.Solution
         /// <param name="b">second matrix</param>
         /// <returns></returns>
         /// <exception cref="ArgumentException">Throws exception if the matrix dimensions do not match</exception>
-        public static IMatrix operator +(Matrix a, Matrix b) => a.Add(b);
+        public static Matrix operator +(Matrix a, Matrix b) => (Matrix) a.Add(b);
 
         /// <summary>
         /// Subtracts the components of two matrices and returns a new matrix
@@ -343,7 +371,7 @@ namespace LinearAlgebraLibrary.Solution
         /// <param name="b">second matrix</param>
         /// <returns></returns>
         /// <exception cref="ArgumentException">Throws exception if the matrix dimensions do not match</exception>
-        public static IMatrix operator -(Matrix a, Matrix b) => a.Subtract(b);
+        public static Matrix operator -(Matrix a, Matrix b) => (Matrix) a.Subtract(b);
 
         /// <summary>
         /// Multiplies two matrices and returns resulting matrix
@@ -352,7 +380,7 @@ namespace LinearAlgebraLibrary.Solution
         /// <param name="b">second matrix</param>
         /// <returns></returns>
         /// <exception cref="ArgumentException">Throws exception if the matrix dimensions do not match</exception>
-        public static IMatrix operator *(Matrix a, Matrix b) => a.Multiply(b);
+        public static Matrix operator *(Matrix a, Matrix b) => (Matrix) a.Multiply(b);
 
         /// <summary>
         /// Multiplies matrix with vector

@@ -36,6 +36,7 @@ namespace LinearAlgebraLibrary.Exercise
         /// Creates vector with all zero components
         /// </summary>
         /// <param name="dimensions">Dimensions of vector</param>
+        /// <exception cref="ArgumentOutOfRangeException">Throws exception if invalid number of components is provided</exception>
         public Vector(int dimensions)
         {
             throw new NotImplementedException();
@@ -75,14 +76,14 @@ namespace LinearAlgebraLibrary.Exercise
         /// </summary>
         /// <param name="vector2">source vector</param>
         /// <returns></returns>
-        public static IVector FromVector2(IVector2 vector2) => new Vector(vector2.X, vector2.Y);
+        public static IVector FromVector2(IVector2 vector2) => throw new NotImplementedException();
 
         /// <summary>
         /// Generate vector from <see cref="IVector3"/>
         /// </summary>
         /// <param name="vector3">source vector</param>
         /// <returns></returns>
-        public static IVector FromVector3(IVector3 vector3) => new Vector(vector3.X, vector3.Y, vector3.Z);
+        public static IVector FromVector3(IVector3 vector3) => throw new NotImplementedException();
 
         /// <summary>
         /// Adds another vector to this vector and returns the result as a new vector
@@ -155,7 +156,7 @@ namespace LinearAlgebraLibrary.Exercise
         /// <exception cref="ArgumentException">Thrown if dimensions do not match</exception>
         public static IVector operator +(Vector a, Vector b)
         {
-            return a.Add(b);
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -167,7 +168,7 @@ namespace LinearAlgebraLibrary.Exercise
         /// <exception cref="ArgumentException">Thrown if dimensions do not match</exception>
         public static IVector operator +(Vector a, IVector2 b)
         {
-            return a.Add(FromVector2(b));
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -179,7 +180,7 @@ namespace LinearAlgebraLibrary.Exercise
         /// <exception cref="ArgumentException">Thrown if dimensions do not match</exception>
         public static IVector operator +(Vector a, IVector3 b)
         {
-            return a.Add(FromVector3(b));
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -191,7 +192,7 @@ namespace LinearAlgebraLibrary.Exercise
         /// <exception cref="ArgumentException">Thrown if dimensions do not match</exception>
         public static IVector operator -(Vector a, Vector b)
         {
-            return a.Subtract(b);
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -203,7 +204,7 @@ namespace LinearAlgebraLibrary.Exercise
         /// <exception cref="ArgumentException">Thrown if dimensions do not match</exception>
         public static IVector operator -(Vector a, IVector2 b)
         {
-            return a.Subtract(FromVector2(b));
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -215,7 +216,7 @@ namespace LinearAlgebraLibrary.Exercise
         /// <exception cref="ArgumentException">Thrown if dimensions do not match</exception>
         public static IVector operator -(Vector a, IVector3 b)
         {
-            return a.Subtract(FromVector3(b));
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -226,7 +227,7 @@ namespace LinearAlgebraLibrary.Exercise
         /// <returns></returns>
         public static IVector operator *(Vector vector, double factor)
         {
-            return vector.Multiply(factor);
+            throw new NotImplementedException();
         }
     }
 }

@@ -39,8 +39,13 @@ namespace LinearAlgebraLibrary.Solution
         /// Creates vector with all zero components
         /// </summary>
         /// <param name="dimensions">Dimensions of vector</param>
+        /// <exception cref="ArgumentOutOfRangeException">Throws exception if invalid number of components is provided</exception>
         public Vector(int dimensions)
         {
+            if (dimensions < 1)
+            {
+                throw new ArgumentOutOfRangeException($"Vector must have at least one component. Given {dimensions}");
+            }
             _storage = new double[dimensions];
         }
 

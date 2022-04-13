@@ -69,6 +69,7 @@ namespace LinearAlgebraLibrary.Exercise
         /// </summary>
         /// <param name="rows">row count</param>
         /// <param name="cols">column count</param>
+        /// <exception cref="ArgumentOutOfRangeException">Throws exception if invalid dimensions are given</exception>
         public Matrix(int rows, int cols)
         {
             throw new NotImplementedException();
@@ -88,6 +89,7 @@ namespace LinearAlgebraLibrary.Exercise
         /// </summary>
         /// <param name="dimension">Length of matrix diagonal</param>
         /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException">Throws exception if invalid dimension is given</exception>
         public static Matrix CreateIdentityMatrix(int dimension)
         {
             throw new NotImplementedException();
@@ -96,11 +98,10 @@ namespace LinearAlgebraLibrary.Exercise
         /// <summary>
         /// Stack two matrices horizontally
         /// </summary>
-        /// <param name="a">first matrix</param>
-        /// <param name="b">second matrix</param>
+        /// <param name="otherMatrix">second matrix</param>
         /// <returns></returns>
         /// <exception cref="ArgumentException">Throws exception if the rows of the matrices do not match</exception>
-        public static IMatrix HStack(IMatrix a, IMatrix b)
+        public IMatrix HStack(IMatrix otherMatrix)
         {
             throw new NotImplementedException();
         }
@@ -108,11 +109,10 @@ namespace LinearAlgebraLibrary.Exercise
         /// <summary>
         /// Stack two matrices vertically
         /// </summary>
-        /// <param name="a">first matrix</param>
-        /// <param name="b">second matrix</param>
+        /// <param name="otherMatrix">second matrix</param>
         /// <returns></returns>
         /// <exception cref="ArgumentException">Throws exception if the columns of the matrices do not match</exception>
-        public static IMatrix VStack(IMatrix a, IMatrix b)
+        public IMatrix VStack(IMatrix otherMatrix)
         {
             throw new NotImplementedException();
         }
@@ -135,6 +135,16 @@ namespace LinearAlgebraLibrary.Exercise
         /// <returns></returns>
         /// <exception cref="ArgumentException">Throws exception if the matrix dimensions do not match</exception>
         public IMatrix Subtract(IMatrix otherMatrix)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Multiplies scalar to matrix
+        /// </summary>
+        /// <param name="scalar">scalar to multiply matrix with</param>
+        /// <returns></returns>
+        public IMatrix Multiply(double scalar)
         {
             throw new NotImplementedException();
         }
@@ -179,7 +189,7 @@ namespace LinearAlgebraLibrary.Exercise
         /// <param name="b">second matrix</param>
         /// <returns></returns>
         /// <exception cref="ArgumentException">Throws exception if the matrix dimensions do not match</exception>
-        public static IMatrix operator +(Matrix a, Matrix b) => a.Add(b);
+        public static Matrix operator +(Matrix a, Matrix b) => (Matrix) a.Add(b);
 
         /// <summary>
         /// Subtracts the components of two matrices and returns a new matrix
@@ -188,7 +198,7 @@ namespace LinearAlgebraLibrary.Exercise
         /// <param name="b">second matrix</param>
         /// <returns></returns>
         /// <exception cref="ArgumentException">Throws exception if the matrix dimensions do not match</exception>
-        public static IMatrix operator -(Matrix a, Matrix b) => a.Subtract(b);
+        public static Matrix operator -(Matrix a, Matrix b) => (Matrix)a.Subtract(b);
 
         /// <summary>
         /// Multiplies two matrices and returns resulting matrix
@@ -197,7 +207,14 @@ namespace LinearAlgebraLibrary.Exercise
         /// <param name="b">second matrix</param>
         /// <returns></returns>
         /// <exception cref="ArgumentException">Throws exception if the matrix dimensions do not match</exception>
-        public static IMatrix operator *(Matrix a, Matrix b) => a.Multiply(b);
+        public static Matrix operator *(Matrix a, Matrix b) => (Matrix)a.Multiply(b);
+
+        /// <summary>
+        /// Multiplies scalar to matrix
+        /// </summary>
+        /// <param name="b">scalar to multiply matrix with</param>
+        /// <returns></returns>
+        public static Matrix operator *(Matrix a, double b) => (Matrix) a.Multiply(b);
 
         /// <summary>
         /// Multiplies matrix with vector

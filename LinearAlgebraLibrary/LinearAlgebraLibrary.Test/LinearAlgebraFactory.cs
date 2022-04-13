@@ -55,7 +55,7 @@ namespace LinearAlgebraLibrary.Test
                 : new LinearAlgebraLibrary.Exercise.Matrix(rows, cols);
         }
 
-        internal static IMatrix MakeVector(double[,] matrixSource)
+        internal static IMatrix MakeMatrix(double[,] matrixSource)
         {
             return UseImplementationFromSolution
                 ? new LinearAlgebraLibrary.Solution.Matrix(matrixSource)
