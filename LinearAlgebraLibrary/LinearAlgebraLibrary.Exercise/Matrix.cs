@@ -10,15 +10,20 @@ namespace LinearAlgebraLibrary.Exercise
         //
         private readonly double[,] _storage;
 
+        //
+        // constants
+        //
+        private const double epsilon = 1e-12;
+
         /// <summary>
         /// Gets the number of rows of the matrix
         /// </summary>
-        public int Rows => throw new NotImplementedException();
+        public int Rows => _storage.GetLength(0);
 
         /// <summary>
         /// Gets the numbers of columns of the matrix
         /// </summary>
-        public int Cols => throw new NotImplementedException();
+        public int Cols => _storage.GetLength(1);
 
         /// <summary>
         /// True if this matrix is a square matrix
@@ -28,7 +33,7 @@ namespace LinearAlgebraLibrary.Exercise
         /// <summary>
         /// True if this matrix is singular
         /// </summary>
-        public bool IsSingular => Determinant < double.Epsilon;
+        public bool IsSingular => Math.Abs(Determinant) < epsilon;
 
         /// <summary>
         /// Gets or sets component of matrix
@@ -260,16 +265,7 @@ namespace LinearAlgebraLibrary.Exercise
                 throw new ArgumentOutOfRangeException($"Cannot create sub-matrix, range given not valid: [{rowIndex}:{rowIndex + rowCount}, {colIndex}:{colIndex + colCount}]");
             }
 
-            var source = new double[rowCount, colCount];
-            for (var i = 0; i < rowCount; ++i)
-            {
-                for (var j = 0; j < colCount; ++j)
-                {
-                    source[i, j] = this[rowIndex + i, colIndex + j];
-                }
-            }
-
-            return new Matrix(source);
+            throw new NotImplementedException();
         }
     }
 }

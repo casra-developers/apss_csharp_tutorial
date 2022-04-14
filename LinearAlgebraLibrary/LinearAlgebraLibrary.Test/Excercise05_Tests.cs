@@ -598,13 +598,91 @@ namespace LinearAlgebraLibrary.Test
         [Test]
         public void Ex05_Task11_VectorMultiplication_EdgeCases()
         {
+            var m1 = LinearAlgebraFactory.MakeMatrix(new[,]
+            {
+                {0, 3.1, 5, 1},
+                {2, 6, 6.2, 1},
+                {1, 5.1, 7, 0}
+            });
+            var m2 = LinearAlgebraFactory.MakeMatrix(new[,]
+            {
+                { 0.1, 8, 9, 1, 0, 4},
+                { 2.2, 1, 1, 1, 7, 1},
+                { 5, 5, 5, -7, 0, 8},
+                { 4, -2, -1.1, 7, 1, -1}
+            });
+            var m3 = LinearAlgebraFactory.MakeMatrix(new[,]
+            {
+                {0, 3.1, 5},
+                {2, 6, 6.2},
+                {1, 5.1, 7}
+            });
+            var m4 = LinearAlgebraFactory.MakeMatrix(new[,]
+            {
+                {0, 3.1},
+                {2, 6},
+                {1, 5.1}
+            });
 
+            var v1 = LinearAlgebraFactory.MakeVector(1, 3, 8, 1);
+            var v2 = LinearAlgebraFactory.MakeVector(1, 3, 8, 1, 0, 1);
+            var v3 = LinearAlgebraFactory.MakeVector3(1, 3, 1);
+            var v4 = LinearAlgebraFactory.MakeVector2(-2, 5);
+
+            Assert.Throws<ArgumentException>(() => m4.Multiply(v1));
+            Assert.Throws<ArgumentException>(() => m3.Multiply(v2));
+            Assert.Throws<ArgumentException>(() => m2.Multiply(v3));
+            Assert.Throws<ArgumentException>(() => m1.Multiply(v4));
         }
 
         [Test]
         public void Ex05_Task12_MatrixDeterminant()
         {
+            const double eps = 1e-10;
+            var m1 = LinearAlgebraFactory.MakeMatrix(new[,]
+            {
+                {0, 3.1, 5, 1},
+                {2, 6, 6.2, 1},
+                {1, 5.1, 7, 0}
+            });
+            var m2 = LinearAlgebraFactory.MakeMatrix(new[,]
+            {
+                { 0.1, 8, 9, 1, 0, 4},
+                { 2.2, 1, 1, 1, 7, 1},
+                { 5, 5, 5, -7, 0, 8},
+                { 4, -2, -1.1, 7, 1, -1},
+                { -3, -2, 3, 6, 2, 2},
+                { 7, 0, 1, -4.2, 7, 9}
+            });
+            var m3 = LinearAlgebraFactory.MakeMatrix(new[,]
+            {
+                {0, 3.1, 5},
+                {2, 6, 6.2},
+                {1, 5.1, 7}
+            });
+            var m4 = LinearAlgebraFactory.MakeMatrix(new[,]
+            {
+                {0, 3.1},
+                {2, 6},
+                {1, 5.1}
+            });
+            var m5 = LinearAlgebraFactory.MakeMatrix(new[,]
+            {
+                { 1.0, 2.0, 2.0 },
+                { 1.0, 2.0, 2.0 },
+                { 3.0, 2.0, -1.0 },
+            });
 
+            Assert.AreEqual(double.NaN, m1.Determinant);
+            Assert.AreEqual(-30624.29599999997, m2.Determinant, eps);
+            Assert.AreEqual(-3.1800000000000037, m3.Determinant, eps);
+            Assert.AreEqual(double.NaN, m4.Determinant);
+            Assert.AreEqual(0, m5.Determinant, eps);
+            Assert.False(m1.IsSingular);
+            Assert.False(m2.IsSingular);
+            Assert.False(m3.IsSingular);
+            Assert.False(m4.IsSingular);
+            Assert.True(m5.IsSingular);
         }
     }
 }

@@ -9,6 +9,11 @@ namespace LinearAlgebraLibrary.Solution
     public class Matrix : IMatrix
     {
         //
+        // constants
+        //
+        private const double epsilon = 1e-12;
+
+        //
         // private members
         //
         private readonly double[,] _storage;
@@ -31,7 +36,7 @@ namespace LinearAlgebraLibrary.Solution
         /// <summary>
         /// True if this matrix is singular
         /// </summary>
-        public bool IsSingular => Determinant < double.Epsilon;
+        public bool IsSingular => Math.Abs(Determinant) < epsilon;
         
         /// <summary>
         /// Gets or sets component of matrix

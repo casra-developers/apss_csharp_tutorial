@@ -4,7 +4,7 @@ namespace LinearAlgebraLibrary.Test
 {
     internal static class LinearAlgebraFactory
     {
-        private const bool UseImplementationFromSolution = true;
+        private const bool UseImplementationFromSolution = false;
 
         internal static IVector2 MakeVector2()
         {
