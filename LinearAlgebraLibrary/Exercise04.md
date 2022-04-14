@@ -1,7 +1,7 @@
-# Excersice 4: More flexible vectors
+# Exercise 4: More flexible vectors
 This exercise is the forth one in a series to provide an introduction into the C# language and various programming concepts within an example project. The example project is a simple linear algebra library that can perform mathematical operations on vectors and matrices.<br>
 
-In this excersice the focus will be on passing all tests related to <b>Vector.cs</b> found in "LinearAlgebraLibrary/LinearAlgebraLibrary.Tests/Excercise04_Tests.cs":
+In this exercise the focus will be on passing all tests related to <b>Vector.cs</b> found in "LinearAlgebraLibrary/LinearAlgebraLibrary.Tests/Excercise04_Tests.cs":
 - Ex04_Task01_Constructors
 - Ex04_Task01_ConstructorsWithInvalidArgs
 - Ex04_Task02_ComponentAccess

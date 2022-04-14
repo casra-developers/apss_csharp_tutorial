@@ -1,7 +1,7 @@
-# Excersice 5: The Matrix
+# Exercise 5: The Matrix
 This exercise is the fifth one in a series to provide an introduction into the C# language and various programming concepts within an example project. The example project is a simple linear algebra library that can perform mathematical operations on vectors and matrices.<br>
 
-In this excersice the focus will be on passing all tests related to <b>Vector.cs</b> found in "LinearAlgebraLibrary/LinearAlgebraLibrary.Tests/Excercise05_Tests.cs":
+In this exercise the focus will be on passing all tests related to <b>Vector.cs</b> found in "LinearAlgebraLibrary/LinearAlgebraLibrary.Tests/Excercise05_Tests.cs":
 
 - Ex05_Task01_Constructors
 - Ex05_Task01_Constructors_EdgeCase

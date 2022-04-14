@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 namespace LinearAlgebraLibrary.Test
 {
-    public class Excercise05_Tests
+    public class Exercise05_Tests
     {
         [Test]
         public void Ex05_Task01_Constructors()

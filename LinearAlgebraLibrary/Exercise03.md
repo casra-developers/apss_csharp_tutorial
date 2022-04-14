@@ -1,20 +1,22 @@
-# Excersice 2: C# coding concepts
-This exercise is the second one in a series to provide an introduction into the C# language and various programing concepts within an example project. The example project is a simple linear algebra library that can perform mathematical operations on vectors and matrices.<br>
+# Exercise 3: Vector3
+This exercise is the third one in a series to provide an introduction into the C# language and various programing concepts within an example project. The example project is a simple linear algebra library that can perform mathematical operations on vectors and matrices.<br>
 
-In this excersice the focus will be on passing all tests related to <b>Vector2.cs</b> found in "LinearAlgebraLibrary/LinearAlgebraLibrary.Tests/Excercise02_Tests.cs":
-- Ex02_Task01_Dimensions
-- Ex02_Task02_L2Norm
-- Ex02_Task03_Adding
-- Ex02_Task04_Subtracting
-- Ex02_Task05_ScalarMultiplication
-- Ex02_Task06_DotProduct
-- Ex02_Task07_PseudoCrossProduct
-- Ex02_Task08_AddingOperator
-- Ex02_Task09_SubtractingOperator
-- Ex02_Task10_ScalarMultiplicationOperator
+In this exercise the focus will be on passing all tests related to <b>Vector3.cs</b> found in "LinearAlgebraLibrary/LinearAlgebraLibrary.Tests/Excercise03_Tests.cs":
+- Ex03_Task01_Dimensions
+- Ex03_Task02_L2Norm
+- Ex03_Task03_Adding
+- Ex03_Task04_Subtracting
+- Ex03_Task05_ScalarMultiplication
+- Ex03_Task06_DotProduct
+- Ex03_Task07_PseudoCrossProduct
+- Ex03_Task08_AddingOperator
+- Ex03_Task09_SubtractingOperator
+- Ex03_Task10_ScalarMultiplicationOperator
+
+Many of the tasks will be very similar to excercies 2, with a few exceptions.
 
 ## Task 1: Vector dimensions
-Since the interface <b>IVectorBase< T></b> which is inherited by <b>IVector2</b> demands a property for the number of vector dimensions, the class <b>Vector2</b> also needs to to implement this.<br>
+Since the interface <b>IVectorBase< T></b> which is inherited by <b>IVector3</b> demands a property for the number of vector dimensions, the class <b>Vector2</b> also needs to to implement this.<br>
 
 <b>TODO:</b> Add your implementation:
 ```Csharp
@@ -27,9 +29,9 @@ NOTE: Here we are using a lambda expression instead of a getter method, which wo
 
 
 ## Task 2: Length of the vector (L2-Norm)
-The length of a vector is often determined by the L2-Norm. For a 2-dimensional vector this is defined by: 
+The length of a vector is often determined by the L2-Norm. For a 3-dimensional vector this is defined by: 
 ```math
-L = sqrt(x^2 + y^2)
+L = sqrt(x^2 + y^2 + z^2)
 ```
 
 <b>TODO:</b> Add your implementation:
@@ -51,7 +53,7 @@ Vector addtion works by adding all components seperately and using the summed co
 /// </summary>
 /// <param name="otherVector">vector to add</param>
 /// <returns></returns>
-public IVector2 Add(IVector2 otherVector)
+public IVector3 Add(IVector3 otherVector)
 {
     throw new NotImplementedException();
 }
@@ -66,7 +68,7 @@ Vector subtraction works by subtracting all components seperately and using the 
 /// </summary>
 /// <param name="otherVector">vector to subtract</param>
 /// <returns></returns>
-public IVector2 Subtract(IVector2 otherVector)
+public IVector3 Subtract(IVector3 otherVector)
 {
     throw new NotImplementedException();
 }
@@ -81,7 +83,7 @@ Vectors can be multiplied with scalars by multipliying every component of the ve
 /// </summary>
 /// <param name="factor">Scalar factor to multiply vector by</param>
 /// <returns></returns>
-public IVector2 Multiply(double factor)
+public IVector3 Multiply(double factor)
 {
     throw new NotImplementedException();
 }
@@ -90,7 +92,7 @@ public IVector2 Multiply(double factor)
 ## Task 6: The dot product
 The dot product between two vectors is the projected length of one vector on the other vector. Mathematically it is defined as follows:
 ```math
-d = x1*x2 + y1*y2
+d = x1*x2 + y1*y2 + z1*z2
 ```
 <b>TODO:</b> Add your implementation:
 ```Csharp
@@ -99,30 +101,31 @@ d = x1*x2 + y1*y2
 /// </summary>
 /// <param name="otherVector">other vector to calculate the dot product with</param>
 /// <returns></returns>
-public double DotProduct(IVector2 otherVector)
+public double DotProduct(IVector3 otherVector)
 {
     throw new NotImplementedException();
 }
 ```
 
 ## Task 7: Pseudo cross product
-Strictly speaking the cross-prodcut is defined for 3 dimensions, but the pseudo cross product sometimes can be useful. Mathematically it is defined as follows:
+The cross product between two vectors defines the vector which is perpendicular to the plane spanned by those vectors. Mathematically it is defined as follows:
 ```math
-p = x1*y2 - x2*y1
+    |y1*z2 - z1*y2|
+n = |z1*x2 - x1*z2|
+    |x1*y2 - y1*x2|
 ```
 <b>TODO:</b> Add your implementation:
 ```Csharp
 /// <summary>
-/// Returns the pseudo cross product of two vectors
+/// Returns the cross product of two vectors
 /// </summary>
-/// <param name="otherVector">other vector to calculate the pseudo cross product with</param>
+/// <param name="otherVector">other vector to calculate the cross product with</param>
 /// <returns></returns>
-public double CrossProduct(IVector2 otherVector)
+public IVector3 CrossProduct(IVector3 otherVector)
 {
     throw new NotImplementedException();
 }
 ```
 
 ## Task 8, 9, 10: Operators
-C# allows classes to override mathematical operators (e.g. +, -, *, ...). If we implement these operator, working with out vectors will be much more intuitive.<br>
 <b>TODO:</b> Use the methods you have implemented so war to get the operators to work.

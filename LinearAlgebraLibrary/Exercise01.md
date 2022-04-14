@@ -1,4 +1,4 @@
-# Excersice 1: C# projects and the excersice solution
+# Exercise 1: C# projects and the exercise solution
 This exercise is the first one in a series to provide an introduction into the C# language and various programing concepts within an example project. The example project is a simple linear algebra library that can perform mathematical operations on vectors and matrices.
 
 ## Task 1: Getting to know the Solution
